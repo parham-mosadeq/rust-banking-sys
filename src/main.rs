@@ -1,70 +1,8 @@
-mod account; // ✅ declare `account.rs` as a sibling module
-mod bank; // ✅ declare `bank.rs` as a sibling module
+mod account;
+mod bank;
 
 use crate::account::Account;
 use crate::bank::Bank;
-
-// #[derive(Debug, Clone)]
-// struct Account {
-//     id: u32,
-//     balance: i32,
-//     holder: String,
-// }
-
-// #[derive(Debug)]
-// struct Bank {
-//     accounts: Vec<Account>,
-// }
-
-// impl Account {
-//     fn new(id: u32, holder: String) -> Account {
-//         Account {
-//             id,
-//             holder,
-//             balance: 0,
-//         }
-//     }
-// }
-
-// impl Bank {
-//     fn new() -> Bank {
-//         Bank { accounts: vec![] }
-//     }
-
-//     fn deposit(&mut self, account_id: u32, balance: i32) {
-//         for ele in &mut self.accounts {
-//             if ele.id == account_id {
-//                 ele.balance = balance;
-//             }
-//         }
-//     }
-
-//     fn get_account_owner(&mut self, account_id: u32) -> String {
-//         let mut holder: String = String::new();
-//         for ele in &mut self.accounts {
-//             if ele.id == account_id {
-//                 holder = ele.holder.to_string();
-//             }
-//         }
-
-//         holder
-//     }
-
-//     fn add_account(&mut self, account: Account) {
-//         self.accounts.push(account);
-//     }
-
-//     fn get_account_balance(&mut self, account_id: u32) -> i32 {
-//         let mut balance: i32 = 0;
-//         for ele in &mut self.accounts {
-//             if ele.id == account_id {
-//                 balance = ele.balance;
-//             }
-//         }
-
-//         balance
-//     }
-// }
 
 fn main() {
     let mut bank = Bank::new();
