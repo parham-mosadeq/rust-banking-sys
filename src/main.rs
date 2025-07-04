@@ -25,8 +25,13 @@ impl Bank {
         Bank { accounts: vec![] }
     }
 
-    fn deposit(&self, account: &mut Account, balance: i32) {
-        account.balance = balance;
+    fn deposit(&mut self, account_id: u32, balance: i32) {
+        // let acc = &;
+        for ele in &mut self.accounts {
+            if ele.id == account_id {
+                ele.balance = balance;
+            }
+        }
     }
 }
 
@@ -36,9 +41,10 @@ fn add_account(bank: &mut Bank, account: Account) {
 
 fn main() {
     let mut bank_a = Bank::new();
-    let mut account_a = Account::new(1, "parham".to_string());
+    let account_a = Account::new(1, "parham".to_string());
+    let account_a_id_ref = &account_a.id;
 
-    bank_a.deposit(&mut account_a, 1000);
+    bank_a.deposit(*account_a_id_ref, 1000);
     add_account(&mut bank_a, account_a);
 
     println!("{:#?}", bank_a);
