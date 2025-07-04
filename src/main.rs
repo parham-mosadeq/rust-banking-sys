@@ -49,6 +49,17 @@ impl Bank {
     fn add_account(&mut self, account: Account) {
         self.accounts.push(account);
     }
+
+    fn get_account_balance(&mut self, account_id: u32) -> i32 {
+        let mut balance: i32 = 0;
+        for ele in &mut self.accounts {
+            if ele.id == account_id {
+                balance = ele.balance;
+            }
+        }
+
+        balance
+    }
 }
 
 fn main() {
@@ -65,5 +76,8 @@ fn main() {
         bank.get_account_owner(account.id)
     );
 
-    println!("Your balance is: {:#?} ", bank);
+    println!(
+        "Your balance is: {:#?}$ ",
+        bank.get_account_balance(*account_id_ref)
+    );
 }
