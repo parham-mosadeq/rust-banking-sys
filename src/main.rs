@@ -1,5 +1,3 @@
-use std::ptr::NonNull;
-
 #[derive(Debug, Clone)]
 struct Account {
     id: u32,
