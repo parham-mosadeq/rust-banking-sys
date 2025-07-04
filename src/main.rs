@@ -1,4 +1,6 @@
-#[derive(Debug)]
+use std::ptr::NonNull;
+
+#[derive(Debug, Clone)]
 struct Account {
     id: u32,
     balance: i32,
@@ -26,26 +28,42 @@ impl Bank {
     }
 
     fn deposit(&mut self, account_id: u32, balance: i32) {
-        // let acc = &;
         for ele in &mut self.accounts {
             if ele.id == account_id {
                 ele.balance = balance;
             }
         }
     }
-}
 
-fn add_account(bank: &mut Bank, account: Account) {
-    bank.accounts.push(account);
+    fn get_account_owner(&mut self, account_id: u32) -> String {
+        let mut holder: String = String::new();
+        for ele in &mut self.accounts {
+            if ele.id == account_id {
+                holder = ele.holder.to_string();
+            }
+        }
+
+        holder
+    }
+
+    fn add_account(&mut self, account: Account) {
+        self.accounts.push(account);
+    }
 }
 
 fn main() {
-    let mut bank_a = Bank::new();
-    let account_a = Account::new(1, "parham".to_string());
-    let account_a_id_ref = &account_a.id;
+    let mut bank = Bank::new();
+    let account = Account::new(1, "parham".to_string());
+    let account_id_ref = &account.id;
+    let cloned_account = account.clone();
 
-    bank_a.deposit(*account_a_id_ref, 1000);
-    add_account(&mut bank_a, account_a);
+    bank.add_account(cloned_account);
+    bank.deposit(*account_id_ref, 1000);
 
-    println!("{:#?}", bank_a);
+    println!(
+        "The owner of this account is: {} ",
+        bank.get_account_owner(account.id)
+    );
+
+    println!("Your balance is: {:#?} ", bank);
 }
