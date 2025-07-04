@@ -1,64 +1,70 @@
-#[derive(Debug, Clone)]
-struct Account {
-    id: u32,
-    balance: i32,
-    holder: String,
-}
+mod account; // ✅ declare `account.rs` as a sibling module
+mod bank; // ✅ declare `bank.rs` as a sibling module
 
-#[derive(Debug)]
-struct Bank {
-    accounts: Vec<Account>,
-}
+use crate::account::Account;
+use crate::bank::Bank;
 
-impl Account {
-    fn new(id: u32, holder: String) -> Account {
-        Account {
-            id,
-            holder,
-            balance: 0,
-        }
-    }
-}
+// #[derive(Debug, Clone)]
+// struct Account {
+//     id: u32,
+//     balance: i32,
+//     holder: String,
+// }
 
-impl Bank {
-    fn new() -> Bank {
-        Bank { accounts: vec![] }
-    }
+// #[derive(Debug)]
+// struct Bank {
+//     accounts: Vec<Account>,
+// }
 
-    fn deposit(&mut self, account_id: u32, balance: i32) {
-        for ele in &mut self.accounts {
-            if ele.id == account_id {
-                ele.balance = balance;
-            }
-        }
-    }
+// impl Account {
+//     fn new(id: u32, holder: String) -> Account {
+//         Account {
+//             id,
+//             holder,
+//             balance: 0,
+//         }
+//     }
+// }
 
-    fn get_account_owner(&mut self, account_id: u32) -> String {
-        let mut holder: String = String::new();
-        for ele in &mut self.accounts {
-            if ele.id == account_id {
-                holder = ele.holder.to_string();
-            }
-        }
+// impl Bank {
+//     fn new() -> Bank {
+//         Bank { accounts: vec![] }
+//     }
 
-        holder
-    }
+//     fn deposit(&mut self, account_id: u32, balance: i32) {
+//         for ele in &mut self.accounts {
+//             if ele.id == account_id {
+//                 ele.balance = balance;
+//             }
+//         }
+//     }
 
-    fn add_account(&mut self, account: Account) {
-        self.accounts.push(account);
-    }
+//     fn get_account_owner(&mut self, account_id: u32) -> String {
+//         let mut holder: String = String::new();
+//         for ele in &mut self.accounts {
+//             if ele.id == account_id {
+//                 holder = ele.holder.to_string();
+//             }
+//         }
 
-    fn get_account_balance(&mut self, account_id: u32) -> i32 {
-        let mut balance: i32 = 0;
-        for ele in &mut self.accounts {
-            if ele.id == account_id {
-                balance = ele.balance;
-            }
-        }
+//         holder
+//     }
 
-        balance
-    }
-}
+//     fn add_account(&mut self, account: Account) {
+//         self.accounts.push(account);
+//     }
+
+//     fn get_account_balance(&mut self, account_id: u32) -> i32 {
+//         let mut balance: i32 = 0;
+//         for ele in &mut self.accounts {
+//             if ele.id == account_id {
+//                 balance = ele.balance;
+//             }
+//         }
+
+//         balance
+//     }
+// }
 
 fn main() {
     let mut bank = Bank::new();
