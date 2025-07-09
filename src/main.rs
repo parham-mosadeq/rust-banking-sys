@@ -12,6 +12,10 @@ fn main() {
 
     bank.add_account(cloned_account);
     bank.deposit(*account_id_ref, 1000);
+    bank.deposit(*account_id_ref, 2400);
+
+    bank.withdraw(*account_id_ref, 200);
+    bank.withdraw(*account_id_ref, 1000);
 
     println!(
         "The owner of this account is: {} ",
