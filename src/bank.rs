@@ -48,4 +48,8 @@ impl Bank {
         }
         balance
     }
+
+    pub fn get_summary(&self) -> i32 {
+        return self.accounts.iter().map(|account| account.balance).sum();
+    }
 }
