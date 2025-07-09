@@ -13,18 +13,20 @@ fn main() {
     let account_id_ref_1 = &account.id;
     let cloned_account_1 = account.clone();
 
+    // * First user
     bank.add_account(cloned_account);
     bank.deposit(*account_id_ref, 1000);
     bank.deposit(*account_id_ref, 2400);
     bank.withdraw(*account_id_ref, 200);
     bank.withdraw(*account_id_ref, 1000);
-
+    // * Second user
     bank.add_account(cloned_account_1);
     bank.deposit(*account_id_ref_1, 5000);
     bank.deposit(*account_id_ref_1, 12400);
     bank.withdraw(*account_id_ref_1, 1200);
     bank.withdraw(*account_id_ref_1, 100);
 
+    // * First user
     println!(
         "The owner of this account is: {} ",
         bank.get_account_owner(account.id)
@@ -34,6 +36,7 @@ fn main() {
         bank.get_account_balance(*account_id_ref)
     );
 
+    // * Second user
     println!(
         "The owner of this account is: {} ",
         bank.get_account_owner(account_1.id)
@@ -42,6 +45,6 @@ fn main() {
         "Your balance is: {:#?}$ ",
         bank.get_account_balance(*account_id_ref_1)
     );
-
+    // * Total balances in the bank
     println!("Your balance summary is: {:#?}$ ", bank.get_summary());
 }
