@@ -12,7 +12,7 @@ impl Bank {
     pub fn deposit(&mut self, account_id: u32, balance: i32) {
         for ele in &mut self.accounts {
             if ele.id == account_id {
-                ele.balance = ele.balance + balance;
+                ele.balance += balance;
             }
         }
     }
@@ -20,7 +20,7 @@ impl Bank {
     pub fn withdraw(&mut self, account_id: u32, amount: i32) {
         for ele in &mut self.accounts {
             if ele.id == account_id {
-                ele.balance = ele.balance - amount;
+                ele.balance -= amount;
             }
         }
     }
